@@ -5,7 +5,7 @@ const prestadorRoutes = require('./routes/prestadorRoutes');
 const categoriaRoutes = require('./routes/categoriaRoutes');
 const servicoRoutes = require('./routes/servicoRoutes');
 const authRoutes = require('./routes/authRoutes');
-const usuarioRoutes = require('./routes/usuarioRoutes'); // Importe as rotas de usuário aqui
+const usuarioRoutes = require('./routes/usuarioRoutes');
 const authMiddleware = require('./middlewares/authMiddleware');
 
 const app = express();
@@ -16,7 +16,7 @@ app.use('/prestadores', authMiddleware, prestadorRoutes);
 app.use('/categorias', authMiddleware, categoriaRoutes);
 app.use('/servicos', authMiddleware, servicoRoutes);
 app.use('/auth', authRoutes);
-app.use(usuarioRoutes); // Use as rotas de usuário aqui
+app.use(usuarioRoutes);
 
 sequelize
   .sync()

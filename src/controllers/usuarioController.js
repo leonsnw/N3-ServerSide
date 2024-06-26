@@ -1,4 +1,4 @@
-const { Usuario } = require('../models');
+const Usuario = require('../models/Usuario');
 
 const criarUsuario = async (req, res) => {
   try {
@@ -11,13 +11,13 @@ const criarUsuario = async (req, res) => {
     }
 
     // Cria o novo usuário
-    const novoUsuario = await Usuario.build({ username });
+    const novoUsuario = Usuario.build({ username });
     await novoUsuario.setPassword(password);
     await novoUsuario.save();
 
     res.status(201).json({ id: novoUsuario.id, username: novoUsuario.username });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: 'Erro ao criar usuário', details: error.message });
   }
 };
 
